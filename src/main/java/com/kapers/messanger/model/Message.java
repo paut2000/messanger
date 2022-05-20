@@ -1,22 +1,30 @@
 package com.kapers.messanger.model;
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.CreatedDate;
 
 import javax.persistence.*;
 import java.util.Date;
 
 @Data
+@NoArgsConstructor
 @Entity
 @Table(name = "messages")
 public class Message {
+
+    public Message(String text, User owner, Dialogue dialogue) {
+        this.text = text;
+        this.owner = owner;
+        this.dialogue = dialogue;
+    }
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
     @CreatedDate
-    private Date date;
+    private Date date = new Date();
 
     private String text;
 
